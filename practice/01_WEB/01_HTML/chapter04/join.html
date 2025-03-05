@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>회원가입</legend>
+            <table>
+                <!-- 항목 이름들 th로 해줘도 됨! 자동 가운데 정렬 -->
+                <tr>
+                    <td><label for="id"><b>사용자 ID</b></label></td>
+                    <td><input id="id" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="password"><b>비밀번호</b></label></td>
+                    <td><input id="password" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="check"><b>비밀번호 확인</b></label></td>
+                    <td><input id="check" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="name"><b>이름</b></label></td>
+                    <td><input id="name" type="text"></td>
+                </tr>
+                <tr>
+                    <td><b>성별</b></td>
+                    <td>
+                        <!-- checked로 미리 남자를 디폴트로 체크해둠 -->
+                        <input id="man" type="radio" name="gender" value="m" checked>
+                        <label for="man">남</label>
+                        <input id="woman" type="radio" name = "gender" value="w">
+                        <label for="woman">여</label>
+                    </td>
+                </tr>
+                <tr> 
+                    <td><label for="hobby"><b>취미</b></label></td>
+                        <td><input id="s" type="checkbox" name="hobby" value="s">
+                            <label for="s">축구</label>
+                            <input id="b" type="checkbox" name="hobby" value="b">
+                            <label for="b">야구</label>
+                            <input id="bo" type="checkbox" name="hobby" value="bo">
+                            <label for="bo">배구</label>
+                            <input id="ba" type="checkbox" name="hobby" value="ba">
+                            <label for="ba">농구</label>
+                        </td>
+                    </tr>
+                </tr>
+                <tr>
+                    <td><label for="email"><b>email</b></label></td>
+                    <td><input id="email" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="role"><b>역할</b></label></td>
+                    <td><select>
+                        <!-- <option value="ADMIN">ADMIN</option> -->
+                        <option>ADMIN</option>
+                        <option>관리자</option>
+                        <option>일반회원</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- <td colspan="2"></td>로 합쳐서 확인, 다시쓰기 버튼 해도 됨 -->
+            </table>
+            <input type="submit" value="확인">   <input type="reset" value="다시쓰기">
+        </fieldset>
+    </form>
+</body>
+</html>

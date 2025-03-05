@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <!-- fieldset 안쪽에 있는 것들이 박스에 들어감 -->
+            <legend>입력 양식</legend>
+            <table>
+                <tr>
+                    <td><label for="name">이름</label></td>
+                    <!-- placeholder로 입력값 힌트주기, required로 필수 입력 만들기 -->
+                    <td><input id="name" type="text" placeholder="마리쿠" required></td>
+                </tr>
+                <tr>
+                    <td><label for="mail">이메일</label></td>
+                    <!-- disabled는 클릭 불가능하게 -->
+                    <td><input id="mail" type="email" disabled></td>
+                </tr>
+            </table>
+            <input type="submit">
+        </fieldset>
+    </form>
+</body>
+</html>
