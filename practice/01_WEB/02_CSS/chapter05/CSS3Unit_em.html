@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- em은 부모 요소 글자 크기의 배수
+    rem은 루트(html) 요소 글자 크기의 배수 -->
+
+    <style>
+        .parent {
+            font-size: 50px;
+        }
+        /* :first-child랑 똑같다 */
+        p:nth-child(1) {}
+        p:nth-child(2) { font-size: 1.0em; }
+        p:nth-child(3) { font-size: 1.5em; }
+        p:nth-child(4) { font-size: 2.0em; }
+    </style>
+</head>
+<body>
+    <div class="parent"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga velit distinctio deleniti nostrum in quibusdam ipsa neque eligendi perferendis et voluptas animi eveniet, nobis consequatur? Saepe in nesciunt nemo reiciendis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga velit distinctio deleniti nostrum in quibusdam ipsa neque eligendi perferendis et voluptas animi eveniet, nobis consequatur? Saepe in nesciunt nemo reiciendis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga velit distinctio deleniti nostrum in quibusdam ipsa neque eligendi perferendis et voluptas animi eveniet, nobis consequatur? Saepe in nesciunt nemo reiciendis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga velit distinctio deleniti nostrum in quibusdam ipsa neque eligendi perferendis et voluptas animi eveniet, nobis consequatur? Saepe in nesciunt nemo reiciendis.</p></div>
+    
+</body>
+</html>

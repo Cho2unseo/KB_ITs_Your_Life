@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        div {
+            /* 이미지를 넣으면 background-color를 덮어씌움 */
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            background-image: url("https://i.pinimg.com/736x/e6/a7/68/e6a76815147412ff947a985fda77459d.jpg");
+            background-size: 100px 150px; /* 각각 가로 세로 길이 */
+            /* 배경이 더 작으면 반복이 디폴트 */
+            background-repeat: no-repeat; /* 반복 없앨 수 있음 */
+            background-position: center; /* 사진 가운데 정렬 */
+            /* cover: 요소의 긴 쪽에 맞춰서 이미지가 채워진다
+            contain: 요소의 짧은 쪽에 맞춰서 이미지가 채워진다 */
+            background-attachment: fixed;
+            /* 이미지가 스크롤에 따라 변하지 않고 고정되어 있음 */
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
