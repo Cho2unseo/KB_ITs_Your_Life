@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Bar</title>
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-left: 50px;
+            margin-bottom: 50px;
+            /* bar 크기 이상으로 margin을 주면 글자가 가려지는 현상 해결! */
+        }
+        .bottom_bar {
+            background: red;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 50px;
+            /* 이렇게만 하면 bottom_bar에 의해 글자가 가려짐
+            container에 margin을 주면 됨 */
+        }
+        .left_bar {
+            background: blue;
+            position: fixed;
+            left: 0;
+            bottom: 50px;
+            top: 0;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bottom_bar"></div>
+    <div class="left_bar"></div>
+    <div class="container">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis consequuntur commodi facilis est explicabo, cum cumque possimus nulla consectetur ab maiores dolores iure rerum? Aut fugiat eligendi neque? Necessitatibus, error!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ea modi, iste, ab quod, ipsum molestias eum eveniet aperiam excepturi distinctio dolores vero repellat provident unde placeat. Eius, illo maiores?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis corporis cumque explicabo ratione, ad voluptas voluptatum animi unde libero earum culpa aut saepe, recusandae officia? Non maiores excepturi dicta quasi!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex facilis ratione similique. Perspiciatis cumque quos cum iusto, temporibus quibusdam qui eum illo reprehenderit eaque animi. Harum, delectus. Ad, tempore soluta?</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque laboriosam vel alias quas tempora, tenetur eius optio harum animi ipsam fuga ad molestiae enim nobis accusantium quae voluptates repellat corporis!</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa aspernatur corporis ea sequi! Facilis enim rem, dolorem vitae corporis illo voluptatem mollitia ipsum, maxime, similique sed assumenda. Delectus, sit ullam.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta alias consequatur id recusandae facere voluptas asperiores et eaque, possimus cum aliquam dicta, adipisci doloribus? Libero porro at facilis corporis iusto.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quod eos, magni doloribus delectus facilis, commodi deleniti placeat sequi provident harum rerum corporis est voluptatem quaerat tenetur impedit vero quas.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi aut est laudantium excepturi voluptatem ut reiciendis, blanditiis, maiores ea sapiente magnam accusantium quam, perspiciatis fuga autem quisquam quibusdam. Quasi, amet.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi soluta beatae id, dolores natus ratione ipsam eum cum, debitis repellat ipsum est quae animi! Perferendis ex eos accusamus cumque adipisci.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, impedit eaque perspiciatis eum commodi illo quos esse, quia quas fuga distinctio officia animi ab a, alias labore minus vel obcaecati!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia ex facilis minus molestiae quae, similique repellendus deleniti adipisci ratione sint beatae vel odio libero eos. Voluptate esse quam quo quidem?</p>
+    </div>
+</body>
+</html>

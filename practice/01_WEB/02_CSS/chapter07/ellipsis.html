@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellipsis</title>
+    <style>
+        h1, p {
+            width: 300px;
+        }
+        .ellipsis {
+            /* 줄바꿈 하지 말고 한 줄로 표시해라 */
+            white-space: nowrap;
+            /* 넘치는 글자 숨기기 */
+            overflow: hidden;
+            /* 잘린 글자 끝에 ...... 붙이기 */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eius aliquam, alias doloribus libero illo amet accusamus architecto incidunt quia fugiat dignissimos beatae deleniti totam nihil exercitationem cupiditate velit consequatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eius aliquam, alias doloribus libero illo amet accusamus architecto incidunt quia fugiat dignissimos beatae deleniti totam nihil exercitationem cupiditate velit consequatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eius aliquam, alias doloribus libero illo amet accusamus architecto incidunt quia fugiat dignissimos beatae deleniti totam nihil exercitationem cupiditate velit consequatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eius aliquam, alias doloribus libero illo amet accusamus architecto incidunt quia fugiat dignissimos beatae deleniti totam nihil exercitationem cupiditate velit consequatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum eius aliquam, alias doloribus libero illo amet accusamus architecto incidunt quia fugiat dignissimos beatae deleniti totam nihil exercitationem cupiditate velit consequatur!</h1>
+    <p class="ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt delectus dolore mollitia? Ipsa libero perferendis similique ut, rem labore! Repellendus atque quibusdam at nostrum, quaerat quo sunt inventore commodi.Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt delectus dolore mollitia? Ipsa libero perferendis similique ut, rem labore! Repellendus atque quibusdam at nostrum, quaerat quo sunt inventore commodi.Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt delectus dolore mollitia? Ipsa libero perferendis similique ut, rem labore! Repellendus atque quibusdam at nostrum, quaerat quo sunt inventore commodi.Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt delectus dolore mollitia? Ipsa libero perferendis similique ut, rem labore! Repellendus atque quibusdam at nostrum, quaerat quo sunt inventore commodi.</p>
+</body>
+</html>
