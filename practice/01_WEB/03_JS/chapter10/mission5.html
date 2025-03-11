@@ -10,7 +10,7 @@
         var date = new Date().toLocaleString();
         var li = document.createElement('li');
         li.textContent = `${amount}원 이체 완료 - ${date}`;
-        document.getElementById('transactionHistory').appendChild(li);
+        document.getElementById('transactionHistory').prepend(li);
       }
     </script>
   </head>
