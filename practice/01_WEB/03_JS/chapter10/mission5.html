@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function addTransaction(amount) {
+        amount = amount.toLocaleString('ko-KR');
+        var date = new Date().toLocaleString();
+        var li = document.createElement('li');
+        li.textContent = `${amount}원 이체 완료 - ${date}`;
+        document.getElementById('transactionHistory').appendChild(li);
+      }
+    </script>
+  </head>
+  <body>
+    <ul id="transactionHistory"></ul>
+
+    <button onclick="addTransaction(100000)">100,000원 이체</button>
+    <button onclick="addTransaction(50000)">50,000원 이체</button>
+  </body>
+</html>

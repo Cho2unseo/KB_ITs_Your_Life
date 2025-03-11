@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            event.preventDefault();
+            const currentPrice = 75000;
+            var btn = document.getElementById('setTargetBtn');
+            btn.addEventListener('click', () => {
+                var targetPrice = document.getElementById('targetPrice').value;
+                if (targetPrice <= currentPrice) {
+                    document.getElementById('alertMessage').textContent = `목표 주가 도달! 매도 준비하세요.`;
+                }
+                else {
+                    document.getElementById('alertMessage').textContent = `아직 목표 주가에 도달하지 않았습니다.`;
+                }
+            })
+
+        }
+    </script>
+  </head>
+  <body>
+    <input type="number" id="targetPrice" placeholder="목표 주가 입력" />
+    <button id="setTargetBtn">목표 설정</button>
+    <p id="alertMessage"></p>
+  </body>
+</html>

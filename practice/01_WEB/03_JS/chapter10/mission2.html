@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var btn = document.querySelector("[type='submit']");
+        console.log(btn);
+        btn.addEventListener('click', () => {
+          event.preventDefault();
+          var money = document.querySelector('#amount').value;
+          if (isNaN(money)) {
+            resultMessage.textContent = `유효한 금액을 입력하세요`;
+          } else {
+            if (money > 100000) {
+              resultMessage.textContent = `잔액이 부족합니다.`;
+            } else {
+              let amount = (100000 - money).toLocaleString('ko-KR');
+              money = Number(money).toLocaleString('ko-KR');
+              resultMessage.textContent = `${money}원 이체 완료`;
+              remainingBalance.textContent = `남은 잔액: ${amount} 원`;
+            }
+          }
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <form id="transferForm">
+      <input type="text" id="amount" placeholder="이체 금액 입력" />
+      <button type="submit">이체하기</button>
+    </form>
+    <p id="resultMessage"></p>
+    <p id="remainingBalance">남은 잔액: 100,000원</p>
+  </body>
+</html>
