@@ -28,9 +28,10 @@ const runProtein = () => {
 
 async function exercise() {
     try {
-        const res = await runStretching;
-        const rt = await runTreadmill;
-        const rp = await runProtein;
+        console.log('운동 기록 처리 시작');
+        const res = await runStretching();
+        const rt = await runTreadmill();
+        const rp = await runProtein();
         console.log('운동 기록 처리 종료');
     } catch (err) {
         return console.error(err);

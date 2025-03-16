@@ -1,0 +1,5 @@
+class ConsultationManager {
+    constructor() {
+        
+    }
+}
