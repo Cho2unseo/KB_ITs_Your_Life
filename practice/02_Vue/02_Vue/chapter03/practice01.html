@@ -7,14 +7,19 @@
   </head>
   <body>
     <div id="app">
-      
+      <input type="text" placeholder="이름을 입력하세요" v-model="name" />
+      <br />
+      <h1>{{name}}님에게 보내는 편지</h1>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return {
+            message: '이름을 입력하세요',
+            name: '',
+          };
         },
       }).mount('#app');
     </script>

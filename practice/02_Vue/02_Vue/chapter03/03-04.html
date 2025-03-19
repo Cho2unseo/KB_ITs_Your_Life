@@ -7,14 +7,19 @@
   </head>
   <body>
     <div id="app">
-      
+        <!-- v-model : 데이터 -> 화면, 화면 -> 데이터 양방향 바인딩 가능 -->
+        <!-- 보통 사용자가 입력하는 form 요소에 사용 -->
+      <input type="text" v-model="name" />
+      <br />
+      입력한 값: <span>{{name}}</span>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
+      var model = { message: 'Hello Vue3!' };
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return { name: '' };
         },
       }).mount('#app');
     </script>

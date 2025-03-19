@@ -7,14 +7,19 @@
   </head>
   <body>
     <div id="app">
-      
+        <h2>추천 고백 장소 TOP 3</h2>
+        <ul v-for="(place, index) in places.slice(0, 3)" :key="index">
+            <li>{{index + 1}}. {{place}}</li>
+        </ul>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return {
+            places: ['베통 성수', '시홍쓰', '시옹마오', '타논55'],
+          };
         },
       }).mount('#app');
     </script>

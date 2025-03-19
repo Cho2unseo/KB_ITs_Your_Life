@@ -7,14 +7,23 @@
   </head>
   <body>
     <div id="app">
-      
+      <input
+        type="checkbox"
+        v-model="complete"
+        true-value="yes"
+        false-value="no"
+      />
+      고백할 준비 됐나요?<br /><br />
+      <div v-show="complete == 'yes'">💌 고백할 준비 완료! 💌</div>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return {
+            complete: 'no',
+          };
         },
       }).mount('#app');
     </script>
