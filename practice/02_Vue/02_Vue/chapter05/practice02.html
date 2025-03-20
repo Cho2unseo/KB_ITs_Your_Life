@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button id="elder" @click="print('엘더')">엘더 지팡이</button>
+      <button id="maple" @click="print('단풍')">단풍 지팡이</button>
+      <button id="bloom" @click="print('벚나무')">벚나무 지팡이</button>
+      <button id="reset" @click="reset">지팡이 초기화</button>
+      <p>{{ment}}</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            ment: '',
+            selected: '',
+          };
+        },
+        methods: {
+          print(string) {
+            if (this.selected == string) {
+              this.ment = `이미 ${string} 지팡이를 선택했습니다. 다른 지팡이를 선택하세요`;
+            } else {
+              this.ment = `당신은 ${string} 지팡이를 선택했습니다!`;
+              this.selected = string;
+            }
+          },
+          reset() {
+            this.ment = `지팡이를 다시 선택해주세요.`;
+            this.selected = '';
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

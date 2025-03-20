@@ -7,15 +7,20 @@
   </head>
   <body>
     <div id="app">
-      <input type="text" v.model.number="time" />
+      <input type="text" v-model.number="time" />
       <br />
-      <div v-if="time >= 17">
+      <br />
+      <div v-if="time < 17">
         아직 준비할 항목:<br /><br />
         <ul v-for="(p, index) in prepare" :key="index">
           <li>- {{p}}</li>
         </ul>
       </div>
-      <div v-else="time">마감 임박! 아래 항목 중 마지막으로 남은 준비:</div>
+      <!-- <span v-else="time">마감 임박! 아래 항목 중 마지막으로 남은 준비: {{prepare.splice(prepare.length - 2, 1)}}</span> -->
+      <span v-else="time"
+        >마감 임박! 아래 항목 중 마지막으로 남은 준비:
+        {{prepare.slice(prepare.length - 1, prepare.length)[0]}}</span
+      >
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
