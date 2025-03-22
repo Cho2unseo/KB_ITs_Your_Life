@@ -8,4 +8,4 @@ const customer2 = new Customer('이몽룡', '조용한', '아파트', '어린이
 
 recommender.recommendPet(customer1);
 recommender.recommendPet(customer2);
-// await recommender.saveToFile();
+await recommender.saveToFile();

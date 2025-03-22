@@ -18,6 +18,9 @@ class ConsultationManager {
         }
         this.people.push(customer);
         console.log(`[상담 등록] ${customer.name} - 선호 펫: ${customer.pet}`);
+        setTimeout(() => {
+          console.log(`[저장 완료] ${customer.name} 상담 기록 저장 완료!`);
+        });
       } else {
         console.log(
           `[상담 등록 오류] ${customer.name}: 잘못된 전화번호 형식입니다.`
