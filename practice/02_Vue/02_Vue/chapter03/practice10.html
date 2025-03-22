@@ -7,14 +7,59 @@
   </head>
   <body>
     <div id="app">
-      
+      <input type="text" v-model="name" placeholder="이름 입력" />
+      <br />
+      <textarea
+        id="content"
+        v-model="content"
+        placeholder="편지 내용"
+      ></textarea>
+      <br /><br />
+      <b>마음 속 이유(2개 이상 선택하세요):<br /><br /></b>
+      <span v-for="(data, index) in reasons" :key="index"
+        ><input type="checkbox" v-model="yes" :value="data" /> {{data}}</span
+      >
+      <br /><br />
+      시간: <input type="text" v-model.number="time" /> <br /><br />
+      <div v-if="!name" style="color: red">
+        ⚠️ 이름을 입력해주세요.<br /><br />
+      </div>
+      <div v-if="content.length < 200" style="color: red">
+        ⚠️ 편지 내용을 200자 이상 작성해주세요. (현재 {{content.length}}자)<br /><br />
+      </div>
+      <div
+        v-if="yes.filter(r=>['신뢰', '배려', '따뜻함'].includes(r)).length < 2"
+        style="color: red"
+      >
+        ⚠️ '신뢰', '배려', '따뜻함' 중 최소 2개를 선택해주세요.<br /><br />
+      </div>
+      <div v-if="time >= 18" style="color: red">
+        ⚠️ 현재 시간이 너무 늦었어요! (마감: 18시)
+      </div>
+      <button
+        v-if="name && content.length >= 200 && yes.filter(r=>['신뢰', '배려', '따뜻함'].includes(r)).length >= 2 && time < 18"
+      >
+        마지막 고백 결심하기
+      </button>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return {
+            name: '',
+            reasons: [
+              '유머 감각',
+              '신뢰',
+              '배려',
+              '따뜻함',
+              '같이 있으면 편안함',
+            ],
+            time: 0,
+            content: '',
+            yes: [],
+          };
         },
       }).mount('#app');
     </script>
