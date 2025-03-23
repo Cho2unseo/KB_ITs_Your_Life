@@ -22,34 +22,24 @@
   <body>
     <div id="app">
       <div id="container" style="margin: 10px">
-        <h1>1번 문제: 도착 열차 정보 테이블</h1>
-        <button type="button" class="btn btn-primary" @click="show">
-          <i class="fa-solid fa-train"></i> 도착 열차 보기</button
+        <h1>2번 문제: 출구 안내 리스트</h1>
+        <button type="button" class="btn btn-secondary" @click="show">
+          <i class="fa-solid fa-location-dot"></i> 출구 안내 보기</button
         ><br /><br />
-        <table v-if="showtable" class="table table-striped">
-          <thead>
-            <th>열차</th>
-            <th>방면</th>
-            <th>남은 시간</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 급행</td>
-              <td>강남행</td>
-              <td>3분</td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 일반</td>
-              <td>잠실행</td>
-              <td>5분</td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 특급</td>
-              <td>종로행</td>
-              <td>1분</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul class="list-group" v-if="showtable">
+          <li class="list-group-item">
+            <i class="fa-solid fa-location-dot"></i> 1번 출구 - 대형서점
+          </li>
+          <li class="list-group-item">
+            <i class="fa-solid fa-location-dot"></i> 2번 출구 - 커피숍
+          </li>
+          <li class="list-group-item">
+            <i class="fa-solid fa-location-dot"></i> 3번 출구 - 쇼핑몰
+          </li>
+          <li class="list-group-item">
+            <i class="fa-solid fa-location-dot"></i> 4번 출구 - 영화관
+          </li>
+        </ul>
       </div>
     </div>
     <script src="https://unpkg.com/vue"></script>

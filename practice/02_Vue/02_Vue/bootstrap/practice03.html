@@ -22,34 +22,22 @@
   <body>
     <div id="app">
       <div id="container" style="margin: 10px">
-        <h1>1번 문제: 도착 열차 정보 테이블</h1>
-        <button type="button" class="btn btn-primary" @click="show">
-          <i class="fa-solid fa-train"></i> 도착 열차 보기</button
+        <h1>3번 문제: 좌석 현황 표시 (랜덤 상태 갱신)</h1>
+        <button type="button" class="btn btn-success" @click="refresh">
+          <i class="fa-solid fa-arrows-rotate"></i> 좌석 현황 새로고침</button
         ><br /><br />
-        <table v-if="showtable" class="table table-striped">
-          <thead>
-            <th>열차</th>
-            <th>방면</th>
-            <th>남은 시간</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 급행</td>
-              <td>강남행</td>
-              <td>3분</td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 일반</td>
-              <td>잠실행</td>
-              <td>5분</td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-train"></i> 특급</td>
-              <td>종로행</td>
-              <td>1분</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="seat in seats" :key="seat.name">
+            <i
+              :class="seat.using ? 'fa-solid fa-circle-xmark text-danger' : 'fa-solid fa-circle-check text-success'"
+              style="margin: 5px"
+            ></i>
+            <span> {{seat.name}} - </span>
+            <span :class="seat.using ? 'text-danger' : 'text-success'">
+              {{seat.using ? '사용중' : '비어있음'}}
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
@@ -58,12 +46,20 @@
         name: 'App',
         data() {
           return {
-            showtable: false,
+            seats: [
+              { name: '창가', using: false },
+              { name: '복도', using: false },
+              { name: '우대석', using: false },
+              { name: '출입구 옆', using: false },
+            ],
           };
         },
         methods: {
-          show() {
-            this.showtable = !this.showtable;
+          refresh() {
+            const ran = [true, false];
+            this.seats.forEach((s) => {
+              s.using = ran[Math.floor(Math.random() * 2)];
+            });
           },
         },
       }).mount('#app');
