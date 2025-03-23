@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      마법 주문:
+      <input type="text" v-model="magic" @keyup.enter="count" /><br />
+      <p>{{message}}</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            magic: '',
+            magics: [],
+            message: '',
+            prev: '',
+          };
+        },
+        methods: {
+          count() {
+            if (this.magic.length < 3) {
+              this.message = '⚠️ 올바른 주문을 입력하세요!';
+            } else {
+              if (this.magic === this.prev) {
+                this.message =
+                  '⚠️ 이미 발사한 주문입니다! 새로운 주문을 입력하세요.';
+              } else {
+                let isExist = this.magics.find((m) => m.name === this.magic);
+                if (isExist) {
+                  isExist.count++;
+                } else {
+                  this.magics.push({ name: this.magic, count: 1 });
+                }
+                this.message = `🪄 ${this.magic} 발사! (지금까지 ${this.saved}회 발사함)`;
+                this.prev = this.magic;
+              }
+            }
+          },
+        },
+        computed: {
+          saved() {
+            let isExist = this.magics.find((m) => m.name === this.magic);
+            if (isExist) {
+              return isExist.count;
+            } else {
+              return 1;
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

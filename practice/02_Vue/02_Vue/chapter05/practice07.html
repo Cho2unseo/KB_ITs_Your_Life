@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button>지팡이 추가</button>
+      <button>로브 추가</button>
+      <button>부엉이 추가</button></br>
+      <h2>🛒 장바구니:</h2><br/>
+      <p>총 합계: </p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {};
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

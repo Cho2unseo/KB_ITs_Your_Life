@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #duel-area {
+        width: 400px;
+        height: 400px;
+        border: 3px solid black;
+        position: relative;
+        margin-bottom: 10px;
+      }
+      #player {
+        width: 150px;
+        height: 150px;
+        background-color: blue;
+        color: white;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      #opponent {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        color: white;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="duel-area" @click="outClick">
+        <div id="player" @click="myClick">내 마법사 (클릭!)</div>
+        <div id="opponent" @click.stop="youClick">상대 마법사 (클릭!)</div>
+      </div>
+      <div>현재 전황: 내 공격 {{countMy}}회 / 상대 반격 {{countYou}}회</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            myCount: 0,
+            youCount: 0,
+          };
+        },
+        created() {
+          console.log('⚔️ 마법 결투 준비 완료!');
+        },
+        mounted() {
+          console.log('🛡️ 결투장이 열렸습니다.');
+        },
+        methods: {
+          myClick(e) {
+            this.myCount++;
+            console.log('🪄 내가 공격!');
+          },
+          youClick(e) {
+            this.youCount++;
+            console.log('💥 상대가 반격!');
+          },
+          outClick(e) {
+            console.log('🏟️ 결투장 클릭 이벤트');
+          },
+        },
+        computed: {
+          countMy() {
+            return this.myCount;
+          },
+          countYou() {
+            return this.youCount;
+          },
+        },
+        watch: {
+          countMy(current, old) {
+            if (current == 5) {
+              console.log('🎉 승리!');
+              return;
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      마법이론: <input type="text" v-model.number="theory" /><br />
+      주문실습: <input type="text" v-model.number="practice" /><br />
+      비행수업: <input type="text" v-model.number="fly" /><br />
+      <button @click="ave">평가하기</button><br />
+      <p>{{message}}</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            theory: 0,
+            practice: 0,
+            fly: 0,
+            message: '',
+          };
+        },
+        watch: {
+          theory(current, old) {
+            if (current < 0 || current > 100)
+              alert('점수는 0~100 사이로 입력해주세요!');
+          },
+          practice(current, old) {
+            if (current < 0 || current > 100)
+              alert('점수는 0~100 사이로 입력해주세요!');
+          },
+          fly(current, old) {
+            if (current < 0 || current > 100)
+              alert('점수는 0~100 사이로 입력해주세요!');
+          },
+        },
+        computed: {
+          average() {
+            return (this.theory + this.practice + this.fly) / 3;
+          },
+        },
+        methods: {
+          ave() {
+            if (this.average >= 90)
+              this.message = `🏅 최우수 합격! (평균: ${parseInt(this.average)}점)`;
+            else if (this.average >= 70)
+              this.message = `✅ 합격 (평균: ${parseInt(this.average)}점)`;
+            else this.message = `❌ 불합격 (평균: ${parseInt(this.average)}점)`;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
