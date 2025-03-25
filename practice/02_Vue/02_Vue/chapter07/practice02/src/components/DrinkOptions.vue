@@ -6,7 +6,7 @@
       <input
         type="radio"
         v-model="options.size"
-        value="small"
+        value="Small"
         @change="optionsChanged"
       />Small
     </label>
@@ -14,7 +14,8 @@
       <input
         type="radio"
         v-model="options.size"
-        value="medium"
+        value="Medium"
+        checked="checked"
         @change="optionsChanged"
       />Medium
     </label>
@@ -22,7 +23,7 @@
       <input
         type="radio"
         v-model="options.size"
-        value="large"
+        value="Large"
         @change="optionsChanged"
       />Large
     </label>
