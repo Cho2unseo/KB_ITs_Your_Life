@@ -1,0 +1,43 @@
+<template>
+  <div class="checkorder">
+    <h1>🧾 주문 내역서</h1>
+    <span>주문 시간: {{ currentTime }} </span><br />
+    <hr />
+    <div>
+      <span>음료: {{ drink.name }}</span
+      ><br />
+      <span>사이즈: {{ optionData.size }}</span
+      ><br />
+      <span>추가 샷: {{ optionData.extra ? '추가함' : '없음' }}</span
+      ><br />
+      <span>얼음 양: {{ optionData.ice }}</span
+      ><br />
+    </div>
+    <hr />
+    <span>결제 금액: {{ drink.price.toLocaleString('ko-KR') }}원</span><br />
+    <button>주문 확정하기</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'OrderSummary',
+  props: ['drink', 'optionData'],
+  computed: {
+    currentTime() {
+      let time = new Date();
+      return `${time.getFullYear()}. ${
+        time.getMonth() + 1
+      }. ${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+    },
+  },
+};
+</script>
+
+<style>
+.checkorder {
+  border: solid 1px #d2b48c;
+  background-color: #fffaf0;
+  padding: 10px;
+}
+</style>
