@@ -1,18 +1,12 @@
 <template>
   <div>
-    <h3>🧮 총 지출: {{ expenses }}원</h3>
+    <h3>🧮 총 지출: {{ formatNumber(expense) }}</h3>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   expense: { type: Number, required: true },
+  formatNumber: { type: Function, required: true },
 });
-
-const emit = defineEmits(['calculate-result', 'format-number']);
-const calculateHandler = () => {
-  const expense = this.formatNumber(this.calculateResult);
-  emit('calculate-result', expense);
-  return expense;
-};
 </script>

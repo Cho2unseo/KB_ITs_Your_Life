@@ -8,7 +8,7 @@
       {{ expense.item }}: {{ expense.amount.toLocaleString('ko-KR') }}원
     </div>
     <br />
-    <TotalDisplay @calculate-result="calculateResult" @formate-number="formatNumber"/>
+    <TotalDisplay :expense="calculateResult" :formatNumber="formatNumber" />
   </div>
 </template>
 
