@@ -7,19 +7,49 @@
   </head>
   <body>
     <div id="app">
-      <button>지팡이 추가</button>
-      <button>로브 추가</button>
-      <button>부엉이 추가</button></br>
-      <h2>🛒 장바구니:</h2><br/>
-      <p>총 합계: </p>
+      <button @click="addcart('지팡이')">지팡이 추가</button>
+      <button @click="addcart('로브')">로브 추가</button>
+      <button @click="addcart('부엉이')">부엉이 추가</button></br>
+      <h2>🛒 장바구니:</h2>
+      <ul>
+        <li v-for="(item, index) in cart" :key="index">- {{item.name}} ({{item.price}}G) <button @click="remove(index)">삭제</button></li>
+      </ul>
+      <p>총 합계: {{sum}}G</p>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return {
+            cart: [],
+          };
         },
+        methods: {
+          addcart(name) {
+            if (name === '지팡이') {
+              this.cart.push({name: name, price: 100});
+            }
+            else if (name === '로브') {
+              this.cart.push({name: name, price: 200});
+            }
+            else if (name === '부엉이') {
+              this.cart.push({name:name, price: 300});
+            }
+          },
+          remove(index) {
+            this.cart.splice(index, 1);
+          }
+        },
+        computed: {
+          sum() {
+            let total = 0;
+            this.cart.forEach(element => {
+              total += element.price;
+            });
+            return total;
+          }
+        }
       }).mount('#app');
     </script>
   </body>

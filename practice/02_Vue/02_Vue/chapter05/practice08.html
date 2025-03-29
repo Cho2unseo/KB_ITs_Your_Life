@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h1>📚 호그와트 마법 도서관 출입 관리 시스템</h1>
+        <p>
+          마법사 이름 입력: <input type="text" v-model="personname" /><button
+            v-if="!message"
+            @click="inPeople(personname)"
+          >
+            출입 기록 추가
+          </button>
+          <button v-else disabled>출입 기록 추가</button>
+        </p>
+        <p v-if="message" style="color: red">{{message}}</p>
+        <h2>📜 현재 도서관 출입 중 (최근 순):</h2>
+        <ul>
+          <li v-for="(name, index) in library" :key="index">
+            {{index + 1}}. {{name}}
+            <button @click="outLibrary(index)">퇴장</button>
+          </li>
+        </ul>
+        <h2>🔥 출입 횟수 통계:</h2>
+        <ul>
+          <li v-for="(person, index) in people" :key="index">
+            {{person.name}} : {{person.count}}회 출입
+          </li>
+        </ul>
+        <p v-if="theMost">
+          가장 많이 출입한 마법사: {{theMost.name}} ({{theMost.count}}회)
+        </p>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            count: 0,
+            people: [],
+            library: [],
+            personname: '',
+            message: '',
+          };
+        },
+        created() {
+          console.log('📚 도서관 관리 시스템 가동!');
+        },
+        mounted() {
+          console.log('✅ 도서관 준비 완료!');
+        },
+        methods: {
+          inPeople(personname) {
+            if (this.library.length < 5) {
+              let person = this.people.find((p) => p.name === personname);
+              let personinlib = this.library.find((p) => p === personname);
+              if (personinlib)
+                console.warn(`⚠️ ${personname} 은(는) 이미 출입 중입니다!`);
+              else {
+                if (person) {
+                  person.count++;
+                  this.library.unshift(personname);
+                } else {
+                  this.people.push({ name: personname, count: 1 });
+                  this.library.unshift(personname);
+                }
+              }
+              this.personname = '';
+            }
+          },
+          outLibrary(index) {
+            this.library.splice(index, 1);
+          },
+        },
+        watch: {
+          'library.length'(current, old) {
+            if (current >= 5 && old < 5)
+              console.warn('⚠️ 현재 도서관 인원 포화!');
+            if (current >= 5)
+              this.message =
+                '⚠️ 현재 도서관 인원 포화 상태입니다! 더 이상 출입할 수 없습니다.';
+            else this.message = '';
+          },
+        },
+        computed: {
+          theMost() {
+            let maxObject = null;
+            let max = 0;
+            this.people.forEach((element) => {
+              if (element.count > max) {
+                max = element.count;
+                maxObject = element;
+              }
+            });
+            return maxObject;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
