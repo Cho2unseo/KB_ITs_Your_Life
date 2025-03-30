@@ -19,13 +19,14 @@ export default {
   methods: {
     handleClick() {
       this.count++;
-      this.$emit('ready', `대사 준비 완료! 총 ${this.count}회 눌림`);
+      console.log('대사 준비 완료!');
+      // this.$emit('ready', `대사 준비 완료! 총 ${this.count}회 눌림`);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .button-container {
   text-align: center;
 }

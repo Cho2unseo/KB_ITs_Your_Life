@@ -2,13 +2,18 @@
   <div class="container">
     <h1>카페 주문 앱</h1>
     <MenuList :menus="menuList" @select-drink="selectDrinkHandler" />
-    <p v-if="selectedDrink">선택한 음료: {{ selectedDrink.name }}</p>
+    <p class="selectp" v-if="selectedDrink && !orderCompleted">
+      선택한 음료: {{ selectedDrink.name }}
+    </p>
     <DrinkOptions
-      v-if="selectedDrink"
+      v-if="selectedDrink && !orderCompleted"
       :selectedDrink="selectedDrink"
       @option-changed="selectOptionsHandler"
     ></DrinkOptions>
-    <div class="print" v-if="selectedDrink && selectedOptions">
+    <div
+      class="print"
+      v-if="selectedDrink && selectedOptions && !orderCompleted"
+    >
       <span style="font-size: 20px">현재 선택 옵션:</span> <br /><br />
       <span>사이즈: {{ selectedOptions.size }}<br /><br /></span>
       <span
@@ -17,11 +22,13 @@
       <span>얼음 양: {{ selectedOptions.ice }}</span>
     </div>
     <OrderSummary
-      v-if="selectedDrink && selectedOptions"
+      v-if="selectedDrink && selectedOptions && !orderCompleted"
       :drink="selectedDrink"
       :optionData="selectedOptions"
       @placeOrder="alertHandler"
     />
+    <OrderHistory :orders="orderHistory" />
+    <Statistics :orders="orderHistory" />
   </div>
 </template>
 
@@ -29,10 +36,18 @@
 import MenuList from './components/MenuList.vue';
 import DrinkOptions from './components/DrinkOptions.vue';
 import OrderSummary from './components/OrderSummary.vue';
+import OrderHistory from './components/OrderHistory.vue';
+import Statistics from './components/Statistics.vue';
 
 export default {
   name: 'App',
-  components: { MenuList, DrinkOptions, OrderSummary },
+  components: {
+    MenuList,
+    DrinkOptions,
+    OrderSummary,
+    OrderHistory,
+    Statistics,
+  },
   data() {
     return {
       menuList: [
@@ -47,10 +62,13 @@ export default {
         extra: false,
         ice: '보통',
       },
+      orderHistory: [],
+      orderCompleted: false,
     };
   },
   methods: {
     selectDrinkHandler(e) {
+      this.orderCompleted = false;
       this.selectedDrink = e;
     },
     selectOptionsHandler(e) {
@@ -58,6 +76,16 @@ export default {
     },
     alertHandler(e) {
       alert(`${e} 주문이 완료되었습니다!`);
+      this.orderHistory.unshift({
+        time: new Date().toLocaleString(),
+        drinkName: this.selectedDrink.name,
+        size: this.selectedOptions.size,
+        extraShot: this.selectedOptions.extra,
+        ice: this.selectedOptions.ice,
+        price: this.selectedDrink.price,
+      });
+      console.log(this.orderHistory);
+      this.orderCompleted = true;
     },
   },
 };
@@ -70,7 +98,7 @@ button {
   cursor: pointer;
 }
 
-p {
+.selectp {
   background-color: rgb(240, 240, 240);
   padding: 20px;
   border-style: ridge;

@@ -2,7 +2,7 @@
   <div class="container">
     <h1>improv-acting-lab 🎭</h1>
     <br />
-    <LineReadyButton @ready="handleReady">
+    <LineReadyButton @click="cardHandler">
       <template #ment>
         <div
           style="
@@ -19,6 +19,20 @@
         </div>
       </template>
     </LineReadyButton>
+    <LineCard v-if="isLineReady">
+      <template #tip>
+        <div class="tips">🎯 TIP: 표정 풍부하게, 발음 또박또박!</div>
+      </template>
+      <template #image>
+        <img
+          src="https://www.chosun.com/resizer/v2/QXJOA4UE56AN5ZEOSZ7HGB5DWY.jpg?auth=eb54c39137830bf544cb83b0b1d0ba3c018d5fba479033ba5ddf7df9200269d4&width=464"
+          style="width: 300px"
+        />
+      </template>
+      <template #lineLengthcheck="{ lineLength }">
+        <p v-if="lineLength > 30">📏 대사가 길어요! 천천히 연기해 보세요.</p>
+      </template>
+    </LineCard>
   </div>
 </template>
 
@@ -28,10 +42,15 @@ import LineCard from './components/LineCard.vue';
 
 export default {
   name: 'App',
-  components: { LineReadyButton },
+  data() {
+    return {
+      isLineReady: false,
+    };
+  },
+  components: { LineReadyButton, LineCard },
   methods: {
-    handleReady(e) {
-      console.log(e);
+    cardHandler() {
+      this.isLineReady = true;
     },
   },
   provide() {
@@ -66,5 +85,12 @@ export default {
 <style>
 .container {
   text-align: center;
+}
+.tips {
+  background-color: rgb(204, 240, 255);
+  border: 0px;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 10px;
 }
 </style>
