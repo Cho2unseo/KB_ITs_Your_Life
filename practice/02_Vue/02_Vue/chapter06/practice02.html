@@ -19,14 +19,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- 나의 js 파일 -->
     <style>
-      .underTwenty {
+      .under-twenty-class {
         color: red;
       }
-      .underFifty {
+      .under-fifty-class {
         color: orange;
       }
-      .overFifty {
+      .over-fifty-class {
         color: green;
+      }
+      textarea {
+        width: 500px;
       }
     </style>
   </head>
@@ -34,8 +37,13 @@
     <div id="app">
       <div class="container">
         <h1>세종대 맛집 리뷰 작성</h1>
-        <textarea v-model="review"></textarea><br /><br />
-        <p>{{message}}</p>
+        <textarea
+          v-model="review"
+          :style="reviewStyle"
+          style="border-radius: 5px"
+        ></textarea
+        ><br />
+        <p :style="mentStyle" :class="fontStyle" v-html="message"></p>
       </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
@@ -44,19 +52,64 @@
         name: 'App',
         data() {
           return {
-            colors: 'underTwenty underFifty overFifty',
+            underTwenty: {
+              borderColor: 'red',
+              boxShadow: 'red 0px 0px 2px 2px',
+            },
+            underFifty: {
+              borderColor: 'orange',
+              boxShadow: 'orange 0px 0px 2px 2px',
+            },
+            overFifty: {
+              borderColor: 'green',
+              boxShadow: 'green 0px 0px 2px 2px',
+            },
+            mentTwenty: {
+              // color: 'red',
+              fontSize: '14px',
+            },
+            mentFifty: {
+              // color: 'orange',
+              fontSize: '16px',
+            },
+            mentOver: {
+              // color: 'green',
+              fontWeight: 'bold',
+              fontSize: '18px',
+            },
             message: '',
+            review: '',
           };
         },
-        methods: {
-          counts() {
+        computed: {
+          reviewStyle() {
             if (this.review.length <= 20) {
-              this.message = `조금 더 작성해주세요!`;
+              return this.underTwenty;
             } else if (this.review.length <= 50) {
-              this.message = `좋은 리뷰입니다!`;
+              return this.underFifty;
             } else {
-              this.message = `훌륭한 리뷰예요!`;
+              return this.overFifty;
             }
+          },
+          mentStyle() {
+            if (this.review.length <= 20) {
+              this.message =
+                '<i class="fa-solid fa-circle-exclamation"></i> 조금 더 작성해주세요!';
+              return this.mentTwenty;
+            } else if (this.review.length <= 50) {
+              this.message =
+                '<i class="fa-solid fa-star"></i> 좋은 리뷰입니다!';
+              return this.mentFifty;
+            } else {
+              this.message =
+                '<i class="fa-solid fa-trophy"></i> 훌륭한 리뷰예요!';
+              return this.mentOver;
+            }
+          },
+          fontStyle() {
+            if (this.review.length <= 20) return 'under-twenty-class';
+            else if (this.review.length <= 50) return 'under-fifty-class';
+            else return 'over-fifty-class';
           },
         },
       }).mount('#app');
