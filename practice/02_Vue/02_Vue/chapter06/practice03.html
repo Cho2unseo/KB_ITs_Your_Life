@@ -19,17 +19,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- 나의 js 파일 -->
     <style>
-      .underTwentyClass {
-        color: red;
+      .high-score {
+        box-shadow: green 0px 0px 2px 2px;
       }
-      .underFiftyClass {
-        color: orange;
+      .medium-score {
+        box-shadow: orange 0px 0px 2px 2px;
       }
-      .overFiftyClass {
-        color: green;
+      .low-score {
+        box-shadow: red 0px 0px 2px 2px;
       }
-      textarea {
-        width: 500px;
+      .card {
+        border: none;
+      }
+      button {
+        border: 1px solid gray;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 10px;
+        background-color: white;
       }
     </style>
   </head>
@@ -37,7 +44,13 @@
     <div id="app">
       <div class="container">
         <h2>세종대 맛집 추천 및 정렬 기능 🍽️</h2>
-
+        <button
+          v-for="(button, index) in buttons"
+          :key="button"
+          @click="sortHandler"
+        >
+          {{button}}
+        </button>
         <div class="container row">
           <div
             class="container mt-3 col-md-4"
@@ -47,7 +60,7 @@
             <div
               class="card pt-3"
               style="padding: 10px; border-width: 3px"
-              :class="getClass(restaurant.name)"
+              :class="cardStyle(restaurant.name)"
             >
               <h4>{{restaurant.name}}</h4>
               <p>
@@ -73,9 +86,9 @@
               { name: '우화등선', reviews: [3.2, 3.4, 3.1] },
               { name: '세종원', reviews: [3.9, 4.0, 3.8] },
             ],
+            buttons: ['평점 높은순', '평점 낮은순', '리뷰 많은순'],
           };
         },
-        computed: {},
         methods: {
           getAverage(name) {
             let restaurant = this.restaurants.find((r) => r.name === name);
@@ -87,6 +100,13 @@
             ).toFixed(2);
             return avg;
           },
+          cardStyle(name) {
+            let avg = this.getAverage(name);
+            if (avg >= 4.5) return 'high-score';
+            else if (avg >= 3.5) return 'medium-score';
+            else return 'low-score';
+          },
+          sortHandler() {},
         },
       }).mount('#app');
     </script>
