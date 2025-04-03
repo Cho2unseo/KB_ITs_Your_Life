@@ -3,6 +3,7 @@
     <input type="text" v-model="item" placeholder="항목명 입력" />
     <input type="text" v-model.number="amount" />
     <select v-model="category">
+      <option value="카테고리 선택" disabled>카테고리 선택</option>
       <option value="식비">식비</option>
       <option value="교통">교통</option>
       <option value="쇼핑">쇼핑</option>
@@ -19,7 +20,7 @@ export default {
   setup(props, context) {
     const item = ref('');
     const amount = ref(0);
-    const category = ref('식비');
+    const category = ref('카테고리 선택');
     const addExpenseHandler = () => {
       if (amount.value > 0)
         context.emit('add-expense', {
@@ -29,7 +30,7 @@ export default {
         });
       item.value = '';
       amount.value = 0;
-      category.value = '식비';
+      category.value = '카테고리 선택';
     };
 
     return { item, amount, addExpenseHandler, category };
