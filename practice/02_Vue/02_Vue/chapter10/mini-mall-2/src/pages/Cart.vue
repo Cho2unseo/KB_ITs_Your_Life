@@ -18,7 +18,7 @@ export default {
   flex-direction: column;
   padding: 50px 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f8f9fa;
 }
 </style>
