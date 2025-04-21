@@ -30,9 +30,10 @@
 //        String s = sc.nextLine();
 //        if (s.isEmpty()) return defaultValue;
 //
+//        return true;
 //    }
 //
 //    boolean confirm(String title) {
-//
+//        return true;
 //    }
 //}
