@@ -1,4 +1,4 @@
-package ch08.practice.practice06;
+package ch08.practice.practice08;
 
 public class KakaoPay implements Payment {
     private boolean isAuthenticated = false;
@@ -9,7 +9,8 @@ public class KakaoPay implements Payment {
             System.out.println("[카카오페이] 결제 실패: 최소 결제 금액은 5000원입니다.");
             return false;
         }
-        else System.out.println("[카카오페이] " + amount + "원 결제 성공");
+        System.out.println("[카카오페이] " + amount + "원 결제 성공");
+        Payment.log("결제 수단: [KakaoPay], 금액: " + amount + "원");
         return true;
     }
 

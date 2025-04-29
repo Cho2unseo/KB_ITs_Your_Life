@@ -1,4 +1,4 @@
-package ch08.practice.practice06;
+package ch08.practice.practice07;
 
 import java.util.Scanner;
 
@@ -28,11 +28,13 @@ public class Main {
         else {
             System.out.print("결제 금액을 입력하세요: ");
             int amount = sc.nextInt();
-            payment.pay(amount);
-            payment.approve();
-            payment.cancel("테스트 취소");
-            if (payment instanceof KakaoPay) ((KakaoPay) payment).sendNotification();
-            else System.out.println("[알림 서비스 없음]");
+            if (payment.pay(amount)) {
+                payment.approve();
+                payment.cancel("테스트 취소");
+                if (payment instanceof KakaoPay) ((KakaoPay) payment).sendNotification();
+                else System.out.println("[알림 서비스 없음]");
+            }
+            else System.out.println("[결제 실패: 승인/취소 건너뜀]");
         }
     }
 }
