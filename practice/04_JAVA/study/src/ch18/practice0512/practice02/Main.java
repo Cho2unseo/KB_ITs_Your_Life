@@ -26,14 +26,15 @@ public class Main {
                 System.out.println("📦 사용된 카드 목록 출력: ");
                 System.out.println();
                 for (Map.Entry<Product, String> a: map.entrySet()) {
-                    System.out.println(a.getKey());
+                    System.out.println(a.getValue());
                 }
                 break;
             }
             System.out.print("출력할 문구 입력: ");
             String comment = sc.nextLine();
-            if (!comment.equals("insta") && !comment.equals("twit") && !comment.equals("short")) {
+            if (!s.equals("insta") && !s.equals("twit") && !s.equals("short")) {
                 System.out.println("[Error] 등록되지 않은 스타일입니다: " + s);
+                System.out.println();
                 continue;
             }
             Product p = manager.create(s);

@@ -6,6 +6,7 @@ public class CardTemplate implements Product {
 
     private String title;
     private char frameChar;
+    private String sentence;
 
     public CardTemplate(String title, char frameChar) {
         this.title = title;
@@ -14,12 +15,15 @@ public class CardTemplate implements Product {
 
     @Override
     public void use(String content) {
-        System.out.println("[" + title + "]");
-        for (int i = 0; i < 30; i++) System.out.print(frameChar);
-        System.out.println();
-        System.out.println(content);
-        for (int i = 0; i < 30; i++) System.out.print(frameChar);
-        System.out.println();
+        StringBuilder sb  = new StringBuilder();
+        sb.append("[").append(title).append("]\n");
+        sb.append(String.valueOf(frameChar).repeat(30));
+        sb.append("\n");
+        sb.append(content);
+        sb.append(String.valueOf(frameChar).repeat(30));
+        sb.append("\n");
+        sentence = sb.toString();
+        System.out.println(sentence);
     }
 
     @Override
@@ -37,5 +41,7 @@ public class CardTemplate implements Product {
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+    
+//    public
 }
 
