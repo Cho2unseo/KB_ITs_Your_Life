@@ -1,6 +1,7 @@
-package org.scoula.practice0521.practice02;
+package org.scoula.practice0521.practice03;
 
 import java.sql.*;
+import java.util.Optional;
 
 public class SushiDaoImpl implements SushiDao {
     Connection conn = JDBCUtil.getConnection();
@@ -8,6 +9,8 @@ public class SushiDaoImpl implements SushiDao {
     private String CUSTOMER_INSERT = "insert into customer values(?, ?)";
     private String PLATE_INSERT = "insert into sushi_log (customer_id, plate_color) values(?, ?)";
     private String PLATE_SELECT = "select * from sushi_log";
+    private String COLOR_SELECT = "select plate_color, COUNT(*) AS count, MAX(eaten_at) AS latest from sushi_log WHERE customer_id = ? GROUP BY plate_color ORDER BY count DESC, latest DESC LIMIT 1";
+
     @Override
     public int insertCustomer(String id, String name) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(CUSTOMER_INSERT)) {
@@ -36,5 +39,19 @@ public class SushiDaoImpl implements SushiDao {
                 System.out.printf("%2s. %-8s (%s)%n", rs.getString("id"), rs.getString("plate_color"), rs.getString("eaten_at"));
             }
         }
+    }
+
+    @Override
+    public Optional<SushiLogStat> findFavoriteColor(String customerId) throws SQLException {
+        try (PreparedStatement pstmt = conn.prepareStatement(COLOR_SELECT)) {
+            pstmt.setString(1, customerId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    SushiLogStat logStat = new SushiLogStat(rs.getString("plate_color"), rs.getString("count"));
+                    return Optional.of(logStat);
+                }
+            }
+        }
+        return Optional.empty();
     }
 }

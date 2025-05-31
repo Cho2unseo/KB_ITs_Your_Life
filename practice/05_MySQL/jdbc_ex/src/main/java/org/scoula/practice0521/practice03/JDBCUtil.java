@@ -1,4 +1,4 @@
-package org.scoula.practice0521.practice01;
+package org.scoula.practice0521.practice03;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,9 +1,6 @@
-package org.scoula.practice0521.practice01;
+package org.scoula.practice0521.practice02;
 
 import org.junit.jupiter.api.*;
-import org.scoula.practice0521.practice01.JDBCUtil;
-import org.scoula.practice0521.practice01.SushiDao;
-import org.scoula.practice0521.practice01.SushiDaoImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,18 +9,16 @@ import java.sql.SQLException;
 class SushiDaoTest {
     SushiDao dao = new SushiDaoImpl();
 
-    @AfterAll
-    static void tearDown() {
-        // 모든 테스트가 완료된 후에 JDBC 연결을 종료
-        JDBCUtil.close();
-    }
-
     @BeforeEach
     void setUp() throws SQLException {
         Connection conn = JDBCUtil.getConnection();
         conn.createStatement().executeUpdate("DELETE FROM sushi_log");
         conn.createStatement().executeUpdate("DELETE FROM customer");
+
         dao.insertCustomer("cust01", "김초밥");
+        dao.insertSushiLog("cust01", "red");
+        dao.insertSushiLog("cust01", "blue");
+        dao.insertSushiLog("cust01", "gold");
     }
 
     @Test
@@ -40,5 +35,12 @@ class SushiDaoTest {
     void insertSushiLog() throws SQLException {
         int count = dao.insertSushiLog("cust01", "red");
         Assertions.assertEquals(1, count);
+    }
+
+    @Test
+    @DisplayName("고객의 접시 기록을 콘솔에 출력한다")
+    @Order(3)
+    void testPrintSushiLogByCustomer() throws SQLException {
+        dao.printSushiLogByCustomer("cust01");
     }
 }

@@ -1,4 +1,4 @@
-package org.scoula.practice0521;
+package org.scoula.practice0521.practice01;
 
 import java.sql.SQLException;
 

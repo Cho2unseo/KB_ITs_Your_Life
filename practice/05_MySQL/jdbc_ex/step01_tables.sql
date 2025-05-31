@@ -10,3 +10,5 @@ CREATE TABLE sushi_log (
                            eaten_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                            FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
+
+SELECT * FROM customer;
