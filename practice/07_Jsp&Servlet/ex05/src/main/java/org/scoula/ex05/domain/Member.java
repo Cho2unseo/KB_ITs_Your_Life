@@ -1,0 +1,30 @@
+package org.scoula.ex05.domain;
+
+// 회원 정보를 저장하는 VO
+public class Member {
+    private String name;
+    private String userid;
+
+    public Member() {}
+
+    public Member(String name, String userid) {
+        this.name = name;
+        this.userid = userid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+}
