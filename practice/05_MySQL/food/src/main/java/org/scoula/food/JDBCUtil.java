@@ -1,4 +1,4 @@
-package org.scoula.database;
+package org.scoula.food;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,11 +1,19 @@
-package ch18.practice0513.practice01;
+package design.builder.practice0513.practice01;
 
-public class DatingCharacter {
+public class DatingCharacter implements Comparable<DatingCharacter> {
     private String name;
     private String personality;
     private String hobby;
     private String favoriteFood;
     private String talkStyle;
+
+    public DatingCharacter(Builder builder) {
+        this.name = builder.name;
+        this.personality = builder.personality;
+        this.hobby = builder.hobby;
+        this.favoriteFood = builder.favoriteFood;
+        this.talkStyle = builder.talkStyle;
+    }
 
     public static class Builder {
         private String name;
@@ -13,10 +21,6 @@ public class DatingCharacter {
         private String hobby;
         private String favoriteFood;
         private String talkStyle;
-
-//        private DatingCharacter(Builder builder) {
-//            this.name = builder.name;
-//        }
 
         public Builder name(String name) {
             this.name = name;
@@ -44,11 +48,18 @@ public class DatingCharacter {
         }
 
         public DatingCharacter build() {
-            return new DatingCharacter();
+            return new DatingCharacter(this);
         }
 
     }
     public int compareTo(DatingCharacter o) {
         return this.name.compareTo(o.name);
+    }
+
+    @Override
+    public String toString() {
+        return "이름: " + name + " / " +
+                "성격: " + personality + " / " +
+                "취미: " + hobby;
     }
 }
