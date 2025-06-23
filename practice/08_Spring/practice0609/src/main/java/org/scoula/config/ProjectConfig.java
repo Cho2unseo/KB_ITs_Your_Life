@@ -2,10 +2,13 @@ package org.scoula.config;
 
 import org.scoula.domain.Dog;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan(basePackages = "org.scoula")
 public class ProjectConfig {
+    /*
     @Bean(name = "꼬미")
     public Dog dog1() {
         Dog d = new Dog();
@@ -29,4 +32,6 @@ public class ProjectConfig {
         d.setBreed("진돗개");
         return d;
     }
+
+     */
 }

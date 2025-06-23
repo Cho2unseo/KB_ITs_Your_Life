@@ -1,0 +1,16 @@
+package com.yuko.pokemon.controller;
+
+import io.swagger.annotations.Api;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/pokemon")
+@RequiredArgsConstructor
+@Log4j2
+@Api(tags = "포켓몬 도감 API")
+public class PokemonController {
+    
+}
