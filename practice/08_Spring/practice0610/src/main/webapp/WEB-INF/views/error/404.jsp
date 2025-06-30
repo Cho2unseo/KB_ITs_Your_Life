@@ -1,18 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: eunseo
-  Date: 6/11/25
-  Time: 4:46 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>페이지를 찾을 수 없습니다</title>
 </head>
 <body>
-
+<h1>❌ 잘못된 접근입니다.</h1>
+<a href="/survey">처음으로 돌아가기</a>
 </body>
 </html>

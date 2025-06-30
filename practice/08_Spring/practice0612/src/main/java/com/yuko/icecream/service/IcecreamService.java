@@ -1,4 +1,7 @@
 package com.yuko.icecream.service;
 
-public class IcecreamService {
+import com.yuko.icecream.dto.IcecreamDTO;
+
+public interface IcecreamService {
+    public void create(IcecreamDTO icecream);
 }

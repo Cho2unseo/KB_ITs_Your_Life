@@ -3,11 +3,16 @@ package org.scoula.security.config;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
+import org.scoula.security.filter.AuthenticationErrorFilter;
+import org.scoula.security.filter.JwtAuthenticationFilter;
 import org.scoula.security.filter.JwtUsernamePasswordAuthenticationFilter;
+import org.scoula.security.handler.CustomAccessDeniedHandler;
+import org.scoula.security.handler.CustomAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,6 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //    DB 기반 인증 처리를 위한 서비스 (in-memory 방식과 병행 불가)
     private final UserDetailsService userDetailsService;
+
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    private final AuthenticationErrorFilter authenticationErrorFilter;
+
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -86,7 +98,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         // 한글 인코딩 필터를 CsrfFilter 앞에 등록
         http.addFilterBefore(encodingFilter(), CsrfFilter.class)
+                // 인증 예외 처리 필터 (JWT 파싱 오류 등)
+                .addFilterBefore(authenticationErrorFilter, UsernamePasswordAuthenticationFilter.class)
+                // JWT 인증 필터 (헤더에서 JWT 추출 -> 인증 객체 생성)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 인증/인가 실패 예외 처리 설정
+        http.exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint) // 인증되지 않은 사용자 처리
+                .accessDeniedHandler(accessDeniedHandler); // 권한 부족 사용자 처리
+
+        http.authorizeRequests()
+                        .antMatchers(HttpMethod.OPTIONS).permitAll()
+                        .antMatchers("/api/security/all").permitAll()
+                        .antMatchers("/api/security/member").access("hasRole('ROLE_MEMBER')")
+                        .antMatchers("/api/security/admin").access("hasRole('ROLE_ADMIN')")
+                        .anyRequest().authenticated();
+
         http.httpBasic().disable() // 기본 HTTP 인증 비활성화
                 .csrf().disable() // CSRF 보호 비활성화
                 .formLogin().disable() // 폼 로그인 기능 비활성화

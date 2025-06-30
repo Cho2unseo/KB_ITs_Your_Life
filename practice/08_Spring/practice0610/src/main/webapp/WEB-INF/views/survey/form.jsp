@@ -14,10 +14,10 @@
 </head>
 <body>
 <h1>🙌 나만의 설문 유도 페이지 만들기</h1>
-<form>
-    <p>🙋‍♀️ 이름: <input type="text"><br/></p>
-    <p>🔗 설문 링크: <input type="text"><br/></p>
-    <p>📝 설문 참여를 유도하는 한 마디: <input type="text" placeholder="예: 궁금하면 꼭 참여해줘!"><br/></p>
+<form action="/survey" method="post">
+    <p>🙋‍♀️ 이름: <input type="text" name="name"><br/></p>
+    <p>🔗 설문 링크: <input type="text" name="url"><br/></p>
+    <p>📝 설문 참여를 유도하는 한 마디: <input type="text" name="comment" placeholder="예: 궁금하면 꼭 참여해줘!"><br/></p>
     <button type="submit">공유 페이지 생성</button>
 
 </form>
