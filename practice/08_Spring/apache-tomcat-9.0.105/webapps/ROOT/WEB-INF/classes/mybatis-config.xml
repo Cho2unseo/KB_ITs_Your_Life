@@ -4,12 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-<!--        언더스코어 포함된 컬럼명을 카멜케이스 자바 필드명으로 자동 매핑-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
-    
-    <typeAliases>
-        <package name="org.scoula.security.account.domain"/>
-        <package name="org.scoula.board.domain"/>
-    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="org.refit.spring.auth.enums.UserRoleTypeHandler"
+                     javaType="org.refit.spring.auth.enums.UserRole"/>
+    </typeHandlers>
 </configuration>
+<!--    <typeAliases>-->
+
+<!--    </typeAliases>-->
+

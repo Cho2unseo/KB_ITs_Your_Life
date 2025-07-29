@@ -10,6 +10,6 @@ public class HomeController {
     @GetMapping("/") // 루트 경로로 GET 요청 들어오면 해당 메소드 처리
     public String home() {
         log.info("===================> HomeController /"); // 요청 확인용 로그 출력
-        return "index"; // 뷰이름
+        return "redirect:/stock/list"; // 뷰이름
     }
 }

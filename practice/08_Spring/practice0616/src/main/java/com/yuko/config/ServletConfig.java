@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc // Spring MVC 기능 활성화
-@ComponentScan(basePackages = {"com.yuko.controller"})
+@ComponentScan(basePackages = {"com.yuko"})
 public class ServletConfig implements WebMvcConfigurer {
     // 정적 처리 설정(CSS, JS, 이미지 등)
     @Override

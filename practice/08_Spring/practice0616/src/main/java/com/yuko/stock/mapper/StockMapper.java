@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface StockMapper {
     List<StockVO> getList();
+
+    StockVO get(Long no);
 }

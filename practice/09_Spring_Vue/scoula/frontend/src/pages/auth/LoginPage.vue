@@ -1,10 +1,11 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter(); // 페이지 이동용 라우터
 const auth = useAuthStore();
+const cr = useRoute();
 
 const member = reactive({
   username: '',
@@ -20,7 +21,11 @@ const login = async () => {
   console.log(member);
   try {
     await auth.login(member); // 인증 스토어의 login 액션 호출
-    router.push('/'); // 로그인 성공 시 홈으로 이동
+    if (cr.query.next) {
+      router.push({ name: cr.query.next });
+    } else {
+      router.push('/'); // 로그인 성공 시 홈으로 이동
+    }
   } catch (e) {
     console.log('에러 =========', e);
     error.value = e.response.data;

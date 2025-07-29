@@ -24,6 +24,6 @@ export default defineConfig({
   // 빌드 결과물 출력 경로 (Spring 프로젝트의 static 위치로 설정)
   build: {
     outDir:
-      '/Users/eunseo/Desktop/kb/practice/09_Spring_Vue/scoula/backend/src/main/webapp/resources',
+      '/Users/eunseo/Desktop/kb/practice/09_Spring_Vue/scoula/travel/src/main/webapp/resources',
   },
 });

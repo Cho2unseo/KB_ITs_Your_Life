@@ -1,5 +1,6 @@
 package com.yuko.stock.service;
 
+import com.yuko.stock.domain.StockVO;
 import com.yuko.stock.dto.StockDTO;
 import com.yuko.stock.mapper.StockMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,10 @@ public class StockServiceImpl implements StockService {
         return mapper.getList().stream()
                 .map(StockDTO::of)
                 .toList();
+    }
+
+    @Override
+    public StockVO get(Long no) {
+        return mapper.get(no);
     }
 }

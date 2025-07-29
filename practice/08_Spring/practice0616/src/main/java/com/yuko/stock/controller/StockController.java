@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Log4j2
 @Controller
@@ -22,4 +23,10 @@ public class StockController {
         model.addAttribute("list", service.getList());
         return "stock/list";
     }
+
+    @GetMapping("/get")
+     public String get(@RequestParam("no") Long no, Model model) {
+        model.addAttribute("stock", service.get(no));
+        return "stock/get";
+     }
 }

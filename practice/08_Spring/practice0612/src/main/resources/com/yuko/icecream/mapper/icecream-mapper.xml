@@ -8,11 +8,21 @@
         insert into tbl_icecream (name, flavor, price) values (#{name}, #{flavor}, #{price})
     </insert>
 
-    <select id="getList" resultType="com.yuko.icecream.domain.IcecreamVO">
-        select * from tbl_board
-        order by no desc
-</select>
-    <select id="get" resultType="com.yuko.icecream.domain.IcecreamVO">
-        select * from tbl_icecream where no = #{no}
+    <delete id="delete">
+        delete from tbl_icecream where no = #{no}
+    </delete>
+
+    <select id="findAll" resultType="com.yuko.icecream.domain.IcecreamVO">
+        <![CDATA[
+            select * from tbl_icecream order by no desc
+        ]]>
     </select>
+
+    <!--    <select id="getList" resultType="com.yuko.icecream.domain.IcecreamVO">-->
+<!--        select * from tbl_icecream-->
+<!--        order by no desc-->
+<!--</select>-->
+<!--    <select id="get" resultType="com.yuko.icecream.domain.IcecreamVO">-->
+<!--        select * from tbl_icecream where no = #{no}-->
+<!--    </select>-->
 </mapper>

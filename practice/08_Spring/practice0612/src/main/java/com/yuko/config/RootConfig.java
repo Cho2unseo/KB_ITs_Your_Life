@@ -48,6 +48,11 @@ public class RootConfig {
         sqlSessionFactory.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
         sqlSessionFactory.setDataSource(dataSource());
 
+        sqlSessionFactory.setMapperLocations(
+                applicationContext.getResources("classpath*:/com/**/*.xml")
+        );
+
+
         return (SqlSessionFactory) sqlSessionFactory.getObject();
     }
 

@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IcecreamMapper {
 
-    public List<IcecreamVO> getList();
+    public List<IcecreamVO> findAll();
 
-    public IcecreamVO get(Long no);
+    public int delete(Long no);
 
     public void create(IcecreamVO icecream);
 }

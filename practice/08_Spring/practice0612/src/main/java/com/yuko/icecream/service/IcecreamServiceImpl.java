@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Log4j2
 @Service
 @RequiredArgsConstructor
@@ -20,5 +22,17 @@ public class IcecreamServiceImpl implements IcecreamService{
         mapper.create(vo);
         icecream.setNo(vo.getNo());
         log.info("create... " + icecream);
+    }
+
+    @Override
+    public List<IcecreamDTO> findAll() {
+        return mapper.findAll().stream()
+                .map(IcecreamDTO::of)
+                .toList();
+    }
+
+    @Override
+    public boolean delete(Long no) {
+        return mapper.delete(no) == 1;
     }
 }

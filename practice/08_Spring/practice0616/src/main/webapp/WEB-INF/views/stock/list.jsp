@@ -13,7 +13,7 @@
 
 <%@ include file="../layouts/header.jsp"%>
 
-<h1 class="page-header my-4"><i class="fas fa-list"></i>주식 목록</h1>
+<h1 class="page-header my-4"><i class="fas fa-list"></i> 주식 목록</h1>
 <table class="table table-hover">
     <thead>
     <tr>
